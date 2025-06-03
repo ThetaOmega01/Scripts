@@ -63,6 +63,7 @@ sleep 1
 # System Update Check
 show_step "System Update Check" brblue "Checking for macOS updates..."
 softwareupdate --list
+softwareupdate --install --all
 check_status
 sleep 1
 
