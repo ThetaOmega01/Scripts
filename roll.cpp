@@ -19,6 +19,12 @@ size_t randomPick(const size_t lowerLimit, const size_t upperLimit) {
 }
 
 int main(int argc, char** argv) {
+  if (argc < 2) {
+    std::cerr << "Usage: " << argv[0] << " <option1> <option2> ... <optionN>"
+              << std::endl;
+    return 1;
+  }
+
   std::vector<std::string> args(argv, argv + argc);
   const size_t rollStart{1};
   const size_t rollEnd{args.size() - 1};
