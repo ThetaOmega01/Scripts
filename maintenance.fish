@@ -66,11 +66,6 @@ softwareupdate --install --all
 check_status
 sleep 1
 
-# Mac App Store Updates
-show_step "Mac App Store Updates" bryellow "Updating Mac App Store apps..."
-mas upgrade || echo -e "Note: 'mas' not installed. Install with 'brew install mas' to enable App Store updates."
-sleep 1
-
 # Only flush DNS cache if the flag is set
 if test $flush_dns = true
     show_step "DNS Cache Flush" brcyan "Flushing DNS cache..."
