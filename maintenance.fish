@@ -44,6 +44,12 @@ function show_step
     set_color normal
 end
 
+# TeX Live maintenance
+show_step "TeX Live Maintenance" brmagenta "Updating TeX Live..."
+sudo tlmgr update --self --all
+check_status
+sleep 1
+
 # Homebrew Maintenance
 show_step "Homebrew Maintenance" brmagenta "Updating Homebrew..."
 brew update

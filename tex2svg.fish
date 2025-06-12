@@ -17,8 +17,8 @@ mkdir -p $outdir
 
 set tmpdir (mktemp -d)
 
-echo "Compiling $texfile to PDF with Tectonic ..."
-tectonic -X compile --outdir=$tmpdir $texfile
+echo "Compiling $texfile to PDF ..."
+latexmk -pdf --output-directory=$tmpdir $texfile
 
 set pdffile $tmpdir/$base.pdf
 if not test -f $pdffile
