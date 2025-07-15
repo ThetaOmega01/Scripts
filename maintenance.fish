@@ -1,8 +1,10 @@
 #!/opt/homebrew/bin/fish
 
-# Parse command line arguments
-set -l flush_dns false
+set -g flush_dns false
+set -g failed_steps
+set -g last_step
 
+# Parse command line arguments
 for arg in $argv
     switch $arg
         case --flush-dns -fd
@@ -33,10 +35,14 @@ function check_status
         set_color brred
         echo -e "-> Failed"
         set_color normal
+        if not contains -- $last_step $failed_steps
+            set -g failed_steps $failed_steps $last_step
+        end
     end
 end
 
 function show_step
+    set -g last_step $argv[1]
     clear
     print_header $argv[1]
     set_color $argv[2]
@@ -84,5 +90,14 @@ else
     sleep 1
 end
 
-show_step "Maintenance Complete" brgreen "All maintenance tasks finished!"
-sleep 2
+if test (count $failed_steps) -gt 0
+    set_color brred
+    echo -e "\nThe following steps failed:"
+    for step in $failed_steps
+        echo -e " - $step"
+    end
+    set_color normal
+else
+    show_step "Maintenance Complete" brgreen "All maintenance tasks finished!"
+    sleep 2
+end
