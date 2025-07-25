@@ -4,7 +4,7 @@
 # Assumptions:
 # - Root filesystem is btrfs
 # - zram is already configured
-# - swap subvolume is already created
+# - swap subvolume is already created (at /swap)
 
 set -e # Exit on any error
 
@@ -88,6 +88,6 @@ echo -e "\n${BLUE}Kernel cmdline:${NC} $(cat /etc/kernel/cmdline)"
 
 echo -e "\n${GREEN}Hibernation setup completed!${NC}"
 echo -e "\n${YELLOW}Next steps:${NC}"
-echo "1. Reboot: sudo reboot"
-echo "2. Test: sudo systemctl hibernate"
-echo "3. Debug: journalctl -b | grep -i hibernate"
+echo "- Reboot: sudo reboot"
+echo "- Test: sudo systemctl hibernate"
+echo "- Debug: journalctl -b | grep -i hibernate"
