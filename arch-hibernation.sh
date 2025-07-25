@@ -42,7 +42,7 @@ ZRAM_SIZE=$(swapon --show --noheadings | grep zram | awk '{print $3}' | head -1)
 log "RAM: ${RAM_GB}GB, Zram: ${ZRAM_SIZE}"
 
 echo "Swap file should be at least: zram + RAM size (current: ${ZRAM_SIZE} + ${RAM_GB}GB)"
-read -p "Enter swap file size: " SWAP_SIZE
+read -p "Enter swap file size (e.g. 72g): " SWAP_SIZE
 [[ -z "$SWAP_SIZE" ]] && error "Swap size cannot be empty"
 
 # Create swap file
