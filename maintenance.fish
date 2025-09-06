@@ -43,7 +43,6 @@ end
 
 function show_step
     set -g last_step $argv[1]
-    clear
     print_header $argv[1]
     set_color $argv[2]
     echo -e "$argv[3] $argv[4]"
