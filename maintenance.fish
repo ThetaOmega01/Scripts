@@ -71,12 +71,6 @@ brew cleanup
 check_status
 sleep 1
 
-# System Update Check
-show_step "System Update Check" brblue "Checking for macOS updates..."
-softwareupdate --install --all
-check_status
-sleep 1
-
 # Only flush DNS cache if the flag is set
 if test $flush_dns = true
     show_step "DNS Cache Flush" brcyan "Flushing DNS cache..."
