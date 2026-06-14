@@ -1,6 +1,7 @@
 #!/opt/homebrew/bin/fish
 
 set -g flush_dns false
+set -g auto_approve false
 set -g failed_steps
 set -g last_step
 
@@ -9,6 +10,8 @@ for arg in $argv
     switch $arg
         case --flush-dns -fd
             set flush_dns true
+        case --auto-approve
+            set auto_approve true
     end
 end
 
@@ -56,7 +59,11 @@ check_status
 sleep 1
 
 show_step "Homebrew Maintenance" brmagenta "Upgrading packages..."
-brew upgrade
+if test $auto_approve = true
+    brew upgrade --yes
+else
+    brew upgrade
+end
 check_status
 sleep 1
 
